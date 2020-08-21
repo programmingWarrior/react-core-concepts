@@ -5,24 +5,53 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
- const nayok = ['Shawon Ahmed', 'Shafin Ahmed', 'Shahrukh Ahmed', 'Shahin Ahmed'];
-const productList = ['Photography', 'All Apps', 'Acrobat Pro', 'Photoshop', 'Premiere Pro'];
+ const nayok = ['Shawon Ahmed', 'Shafin Ahmed', 'Shahrukh Ahmed', 'Shahin Ahmed','Bappi Ahmed','shuvo Ahmed','Biplob'];
 
-const productPrice = [9.99, 2.99, 14.99, 20.99, 9.99];
+
+const productList =[
+  {name:'Photography', price: 90.99},
+  {name:'All App', price: 269.99},
+  {name:'Acrobat Pro', price: 69.99},
+  {name:'PhotoShop', price: 89.99},
+  {name:'Premiere Pro', price: 67.66}
+]
+
+const products = [
+  { name:'shawon', class: 10},
+  {name: 'santo', class: 9},
+  {name: 'Riajul', class:12},
+  {name:'samrat', class: 6}
+];
+
+const nayokName = nayok.map(nayok => nayok);
+console.log(nayokName);
+
+const productName = products.map(products=> products.name);
+console.log(productName);
+
+
+
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <Product name={productList[0]} price={productPrice[0]}></Product>
-        <Product name={productList[1]} price={productPrice[1]}></Product>
-        <Product name={productList[2]} price={productPrice[2]}></Product>
-        <Product name={productList[3]} price={productPrice[3]}></Product>
-        <Product name={productList[4]} price={productPrice[4]}></Product>
 
-        <Document name={nayok[0]}select="Hero"></Document>
-        <Document name={nayok[1]} select="Freelancer"></Document>
-        <Document name={nayok[2]} select="Singer"></Document>
-        <Document name={nayok[3]} select="Dancer"></Document>
+        <ul>
+          {
+            nayok.map(nayok => <li>{nayok}</li>)
+          };
+          <li>{nayok[0]}</li>
+          <li>{nayok[1]}</li>
+          <li>{nayok[2]}</li>
+          <li>{nayok[3]}</li>
+        </ul>
+          {
+            productList.map(product => <Product product={product}></Product>)
+          }
+        
+
+       
      
       </header>
     </div>
@@ -48,21 +77,12 @@ function Product(props){
   }
   return(
     <div style={productStyle}>
-      <h3>{props.name}</h3>
-      <h1>US${props.price}/mo</h1>
+      <h3>{props.product.name}</h3>
+      <h1>US${props.product.price}/mo</h1>
       <button style={{color:'white', background:'#0D66D0',borderRadius:'40px',padding:'20px',fontWeight:'bold',}}>Buy now</button>
     </div>
   )
 }
 
-function Document(props){
- 
-return (
-  <div style={{border:"1px solid red", margin:"10px", background:"skyblue", borderRadius:"20px"}}>
-    <h1 style={{color:"tomato", background:"yellow"}}>I am {props.name}</h1>
-    <h2>{props.select} of the year</h2>
-  </div>
-  
- )
-}
+
 export default App;
