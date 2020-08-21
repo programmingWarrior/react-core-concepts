@@ -1,6 +1,6 @@
 
 
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -36,7 +36,7 @@ console.log(productName);
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-
+        <Counter></Counter>
         <ul>
           {
             nayok.map(nayok => <li>{nayok}</li>)
@@ -66,7 +66,7 @@ function Product(props){
     height:'250px',
     width: '250px',
     float:'left',
-    padding:'15px',
+    padding:'50px',
     margin:'5px',
     textAlign:'left',
     justifyContent:'left',
@@ -77,12 +77,26 @@ function Product(props){
   }
   return(
     <div style={productStyle}>
-      <h3>{props.product.name}</h3>
+      <h2>{props.product.name}</h2>
       <h1>US${props.product.price}/mo</h1>
       <button style={{color:'white', background:'#0D66D0',borderRadius:'40px',padding:'20px',fontWeight:'bold',}}>Buy now</button>
     </div>
   )
 }
+
+function Counter(){
+  const [count, setCount] = useState(10);
+
+  
+  return(
+    <div>
+      <h1>Count:{count}</h1>
+      <button onClick={ () => setCount(count+1)}>Increase</button>
+      <button onClick={ () => setCount(count-1)}>Decrease</button>
+    </div>
+  )
+}
+
 
 
 export default App;
