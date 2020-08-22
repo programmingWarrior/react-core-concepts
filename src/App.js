@@ -1,6 +1,6 @@
 
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -32,11 +32,15 @@ console.log(productName);
 
 
 
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Counter></Counter>
+        <Users></Users>
+        
+
         <ul>
           {
             nayok.map(nayok => <li>{nayok}</li>)
@@ -91,12 +95,32 @@ function Counter(){
   return(
     <div>
       <h1>Count:{count}</h1>
-      <button onClick={ () => setCount(count+1)}>Increase</button>
-      <button onClick={ () => setCount(count-1)}>Decrease</button>
+      <button onMouseMove={ () => setCount(count+1)}>Increase</button>
+      <button onMouseMove={ () => setCount(count-1)}>Decrease</button>
     </div>
   )
 }
 
+function Users(){
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(res=>res.json())
+    .then(data => {
+      setUsers(data);
+
+    })
+  }, []);
+
+  return(
+    <div>
+      <h3>Dynamic Website:{users.length}</h3>
+      {
+        users.map(user=> <ul><li>{user.phone}</li></ul>)
+      }
+    </div>
+  )
+}
 
 
 export default App;
