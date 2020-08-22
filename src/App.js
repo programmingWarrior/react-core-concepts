@@ -5,6 +5,8 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  
  const nayok = ['Shawon Ahmed', 'Shafin Ahmed', 'Shahrukh Ahmed', 'Shahin Ahmed','Bappi Ahmed','shuvo Ahmed','Biplob'];
 
 
@@ -37,6 +39,8 @@ console.log(productName);
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+
+        <MovieCounter></MovieCounter>
         <Counter></Counter>
         <Users></Users>
         
@@ -118,6 +122,27 @@ function Users(){
       {
         users.map(user=> <ul><li>{user.phone}</li></ul>)
       }
+    </div>
+  )
+}
+function MovieDisplay(props){
+  return(
+  <h4>Movies I have acted:{props.movies}</h4>
+  )
+}
+
+function MovieCounter(){
+  let [count,setCount] = useState(0);
+  const handleClick = () => setCount(count+1);
+ 
+  return(
+    <div style={{color:'tomato', border:'1px solid red', margin:'5px'}}>
+
+      <button onClick={handleClick} style={{background:'#444', color:'white'}}>Add movie</button>
+
+  <h3 >Number of Movie: {count}</h3>
+  <MovieDisplay movies={count+10}></MovieDisplay>
+
     </div>
   )
 }
